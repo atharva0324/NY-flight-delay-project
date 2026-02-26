@@ -11,7 +11,7 @@ The dataset includes monthly flight records from December 2024 to October 2025 o
 
 This project uses the U.S. DOT Bureau of Transportation Statistics
 On-Time Performance dataset (1987–Present)
-Following are the link to this datasets:-
+-Following is the link to this datasets:-
 
 https://transtats.bts.gov/DL_SelectFields.aspx?gnoyr_VQ=FGJ&QO_fu146_anzr=b0-gvzr
 
