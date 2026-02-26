@@ -16,10 +16,11 @@ def main():
     df_2025_8  = pd.read_csv("data/raw/On_Time_Reporting_Carrier_On_Time_Performance_(1987_present)_2025_8.csv")
     df_2025_9  = pd.read_csv("data/raw/On_Time_Reporting_Carrier_On_Time_Performance_(1987_present)_2025_9.csv")
     df_2025_10 = pd.read_csv("data/raw/On_Time_Reporting_Carrier_On_Time_Performance_(1987_present)_2025_10.csv")
+    df_2025_11 = pd.read_csv("data/raw/On_Time_Reporting_Carrier_On_Time_Performance_(1987_present)_2025_11.csv")
 
     combined_df = pd.concat([
         df_2025_1, df_2025_2, df_2025_3, df_2025_4, df_2025_5,
-        df_2025_6, df_2025_7, df_2025_8, df_2025_9, df_2025_10,df_2024_12
+        df_2025_6, df_2025_7, df_2025_8, df_2025_9, df_2025_10,df_2025_11,df_2024_12
     ], ignore_index=True)
 
     print("Total rows after combining:", combined_df.shape)
