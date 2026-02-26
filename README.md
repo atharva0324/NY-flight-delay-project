@@ -39,6 +39,9 @@ Select Filter Year=2025
 -Step3:-
 Select Filter month = 'January"
 
+-Step 4:-
+Select "prezipped files" and then press download
+
 January Dataset will be downloaded
 Repeat this process for all the months
 
