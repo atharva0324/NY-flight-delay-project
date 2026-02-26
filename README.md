@@ -103,14 +103,3 @@ python src/eda.py
 outputs/eda/
 
 
----
-
-## 📓 Original Exploratory Notebook
-
-The initial exploratory analysis and early cleaning steps were developed in a Jupyter Notebook.
-
-You can view it here:
-
-notebooks/flight_project_exploration.ipynb
-
-Note: The final reproducible pipeline has been modularized into Python scripts inside the `src/` directory.
