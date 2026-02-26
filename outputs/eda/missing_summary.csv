@@ -1,0 +1,16 @@
+,missing_count,missing_pct
+FlightDate,0,0.0
+Reporting_Airline,0,0.0
+Origin,0,0.0
+Dest,0,0.0
+DestState,0,0.0
+CRSDepTime,0,0.0
+ArrDel15,0,0.0
+Day,0,0.0
+Month,0,0.0
+DayOfWeek,0,0.0
+DayName,0,0.0
+IsWeekend,0,0.0
+IsFixedHoliday,0,0.0
+IsHolidayWindow,0,0.0
+DepHour,0,0.0
