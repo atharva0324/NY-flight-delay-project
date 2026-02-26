@@ -7,9 +7,47 @@ The goal is to explore patterns in arrival delays (ArrDel15) using exploratory d
 
 The dataset includes monthly flight records from December 2024 to October 2025 obtained from the Bureau of Transportation Statistics (BTS).
 
-## Data Requirement
+## Data Source
 
-Download monthly BTS On-Time Performance CSV files and place them inside:
+This project uses the U.S. DOT Bureau of Transportation Statistics
+On-Time Performance dataset (1987–Present)
+Following are the link to this datasets:-
+
+https://transtats.bts.gov/DL_SelectFields.aspx?gnoyr_VQ=FGJ&QO_fu146_anzr=b0-gvzr
+
+The following monthly datasets were used:
+
+- December 2024  
+- January 2025  
+- February 2025  
+- March 2025  
+- April 2025  
+- May 2025  
+- June 2025  
+- July 2025  
+- August 2025  
+- September 2025  
+- October 2025  
+
+
+-Step 1:-
+Select "All" in Filter Geography
+
+-Step2:-
+Select Filter Year=2025 
+
+-Step3:-
+Select Filter month = 'January"
+
+January Dataset will be downloaded
+Repeat this process for all the months
+
+-NOTE:- Dec 2025 data is not available so I have used Dec 2024 Dataset instead, So once done downloading Jan-Nov 2025 dataset, Download Dec 2024 dataset by selecting Filter Year= 2024 and Filter Month = November
+
+
+
+
+-Download  this monthly BTS On-Time Performance CSV files and place them inside:
 
 data/raw/
 
@@ -60,3 +98,7 @@ data/processed/
 python src/eda.py
 ### EDA outputs (tables and plots) are saved in:
 outputs/eda/
+
+
+## to see complete data cleaning
+link to the Jupyter notebook:- http://localhost:8888/notebooks/Flight%20Project.ipynb?
