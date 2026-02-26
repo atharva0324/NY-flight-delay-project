@@ -103,5 +103,14 @@ python src/eda.py
 outputs/eda/
 
 
-## to see complete data cleaning
-link to the Jupyter notebook:- http://localhost:8888/notebooks/Flight%20Project.ipynb?
+---
+
+## 📓 Original Exploratory Notebook
+
+The initial exploratory analysis and early cleaning steps were developed in a Jupyter Notebook.
+
+You can view it here:
+
+notebooks/flight_project_exploration.ipynb
+
+Note: The final reproducible pipeline has been modularized into Python scripts inside the `src/` directory.
