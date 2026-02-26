@@ -10,3 +10,4 @@ __pycache__/
 
 # Large raw data
 data/raw/*.csv
+data/processed/*.csv
