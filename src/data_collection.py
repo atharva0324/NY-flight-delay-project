@@ -27,6 +27,6 @@ def main():
 
     combined_df.to_csv("data/processed/combined_flights.csv", index=False)
 
-    print("Data collection complete.")
+    print("Data collection completed.")
 if __name__ == "__main__":
     main()

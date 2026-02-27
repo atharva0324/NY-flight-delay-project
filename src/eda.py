@@ -32,12 +32,12 @@ def main():
     out_dir = "outputs/eda"
     os.makedirs(out_dir, exist_ok=True)
 
-    # 1) Load
+    # 1) Load data
     df = pd.read_csv(input_csv)
-    print("✅ Loaded:", input_csv)
+    print("Loaded:", input_csv)
     print("Shape:", df.shape)
 
-    # 2) Columns + dtypes
+    # 2) Columns + datatypes
     print("\n--- Columns ---")
     print(list(df.columns))
     print("\n--- Dtypes ---")
