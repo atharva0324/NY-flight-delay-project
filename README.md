@@ -104,3 +104,25 @@ python src/eda.py
 outputs/eda/
 
 
+### Ppip freeze > requirements.txthase 2 Models
+
+The following algorithms were trained:
+
+- Logistic Regression
+- Decision Tree
+- Random Forest
+- XGBoost
+- Naive Bayes
+- SVM
+
+The best performing model was XGBoost.
+
+Deployment
+
+The XGBoost model was deployed as an MCP server.
+
+Run the server with:
+
+python src/mcp/server.py
+
+

@@ -186,11 +186,17 @@ def main():
     )
     df = df[df["temp"].notna()].copy()
 
+    extra_drop_cols = ["DestState", "wdir", "gust", "cloud"]
+    df.drop(columns=extra_drop_cols, inplace=True, errors="ignore")
+
+    df["Route"] = df["Origin"].astype(str) + "_" + df["Dest"].astype(str)
+
+
     final_columns = [
     'Reporting_Airline',
     'Origin',
     'Dest',
-    'DestState',
+    'Route',
     'ArrDel15',
     'Day',
     'Month',
@@ -205,12 +211,9 @@ def main():
     'rain',
     'snow',
     'wspd',
-    'wdir',
-    'gust',
-    'cloud',
     'Rain_type',
     'Snow_type',
-    'Wind_type'
+    'Wind_type',
     ]
 
     df = df[[col for col in final_columns if col in df.columns]]
