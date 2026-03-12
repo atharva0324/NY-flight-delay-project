@@ -103,10 +103,24 @@ python src/eda.py
 ### EDA outputs (tables and plots) are saved in:
 outputs/eda/
 
+# Flight Delay Prediction (Phase 2)
 
-### Ppip freeze > requirements.txthase 2 Models
+This project predicts whether a flight will arrive delayed using machine learning.
 
-The following algorithms were trained:
+## Dataset
+
+The dataset contains flight information combined with weather data.
+
+## Pipeline
+
+1. Data collection
+2. Data cleaning
+3. Feature engineering
+4. Machine learning models
+5. Model evaluation
+6. MCP deployment
+
+## Models Implemented
 
 - Logistic Regression
 - Decision Tree
@@ -115,14 +129,21 @@ The following algorithms were trained:
 - Naive Bayes
 - SVM
 
-The best performing model was XGBoost.
+## Best Model
 
-Deployment
+XGBoost achieved the best performance with the highest ROC-AUC score.
 
-The XGBoost model was deployed as an MCP server.
+## MCP Deployment
 
-Run the server with:
+The best performing model (XGBoost) was deployed using an MCP server.
 
+Run locally:
 python src/mcp/server.py
 
+The server exposes a `predict` tool that returns flight delay predictions.
 
+## Requirements
+
+Install dependencies:
+
+pip install -r requirements.txt
