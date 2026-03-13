@@ -25,7 +25,23 @@ def main():
 
     print("Total rows after combining:", combined_df.shape)
 
-    combined_df.to_csv("data/processed/combined_flights.csv", index=False)
+    output_path = "data/processed/combined_flights.csv"
+
+    print("Saving combined CSV in chunks...")
+
+    chunk_size = 200_000
+    total_rows = len(combined_df)
+
+    for start in range(0, total_rows, chunk_size):
+        end = min(start + chunk_size, total_rows)
+        mode = "w" if start == 0 else "a"
+        header = True if start == 0 else False
+
+        combined_df.iloc[start:end].to_csv(output_path, mode=mode, header=header, index=False)
+
+        print(f"Saved rows {start:,} to {end:,} / {total_rows:,}")
+
+    print("Done saving:", output_path)
 
     print("Data collection completed.")
 if __name__ == "__main__":

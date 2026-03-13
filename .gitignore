@@ -11,3 +11,12 @@ __pycache__/
 # Large raw data
 data/raw/*.csv
 data/processed/*.csv
+
+# Generated outputs
+outputs/
+
+# VS Code settings
+.vscode/
+
+# Logs
+*.log
