@@ -28,7 +28,7 @@ def save_line(series, title, xlabel, ylabel, outpath):
 
 def main():
     # 0) Paths
-    input_csv = "data/processed/ny_flights_clean.csv"   # <-- your cleaned output
+    input_csv = "data/processed/ny_flights_clean.csv"   
     out_dir = "outputs/eda"
     os.makedirs(out_dir, exist_ok=True)
 
