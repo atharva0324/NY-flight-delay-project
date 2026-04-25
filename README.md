@@ -147,3 +147,45 @@ The server exposes a `predict` tool that returns flight delay predictions.
 Install dependencies:
 
 pip install -r requirements.txt
+
+Phase 3 — Databricks / Spark / Delta Lake
+
+Phase 3 re-implements the Phase 2 analytics on Apache Spark with Delta Lake using the Medallion (Bronze → Silver → Gold) architecture on Databricks Free Edition. It also integrates Meteostat hourly weather as an additional data source.
+
+Weather join match rate: 99.82%. Full writeup in reports/Phase3_summary.pdf.
+
+Notebooks
+All in notebooks/databricks/:
+01_bronze_flights        → bronze_flights
+02_silver_flights        → silver_flights
+03_gold_flights          → gold_flight_features + business aggregates
+04_mllib_models          → LR / RF / GBT + MLflow
+05_weather_pipeline      → Meteostat bronze/silver/gold
+06_joined_analysis       → joined model + 3 insights
+
+How to Reproduce in Databricks
+
+Sign up for Databricks Free Edition: https://www.databricks.com/learn/free-edition
+Upload the data: In Catalog → workspace.default, create a Volume named flight_data and upload data/processed/ny_flights_phase3_bronze.csv to it.
+Import notebooks: Workspace → create folder NY_flight_delay_phase3 → Import all six .ipynb files from notebooks/databricks/.
+Run in order (each notebook reads the previous one's Delta tables): 01 → 02 → 03 → 04 → 05 → 06. Click Run all on each, with Serverless attached.
+
+Serverless-specific notes
+
+Notebook 04 calls 
+%pip install xgboost then dbutils.library.restartPython(). 
+After the restart, run cells from the top — don't use "Run all" again immediately.
+SPARKML_TEMP_DFS_PATH is set to a UC Volume path inside Notebooks 04 and 06. Required for MLlib on serverless.
+CrossValidator runs on Logistic Regression only. RF and GBT use fixed Phase 2 hyperparameters due to the 1 GB Spark Connect ML cache cap. Details in reports/Phase3_summary.pdf .
+
+Phase 3 Files Added
+data/processed/ny_flights_phase3_bronze.csv -Databricks input
+notebooks/databricks/ ← 6 exported notebooks
+Phase 3 Data Sources
+
+BTS On-Time Performance (same as Phase 1/2) — manual download
+Meteostat Hourly Weather (new) — fetched programmatically inside Notebook 05 via the meteostat Python library
+
+Only ny_flights_phase3_bronze.csv needs to be uploaded to Databricks. Weather is pulled live from Meteostat.
+
+
