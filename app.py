@@ -11,6 +11,7 @@ ROOT = Path(__file__).parent
 
 # ── Airport coordinates (for OpenMeteo weather fetch) ──────────────────────
 AIRPORT_COORDS = {
+    # NY State origins
     "JFK": (40.6413, -73.7781),
     "LGA": (40.7769, -73.8740),
     "BUF": (42.9405, -78.7322),
@@ -25,6 +26,53 @@ AIRPORT_COORDS = {
     "IAG": (43.1011, -79.0441),
     "PBG": (44.6509, -73.4681),
     "ITH": (42.4911, -76.4584),
+    # Common destinations
+    "ORD": (41.9742, -87.9073),
+    "MCO": (28.4312, -81.3081),
+    "ATL": (33.6367, -84.4281),
+    "BOS": (42.3656, -71.0096),
+    "DCA": (38.8521, -77.0377),
+    "CLT": (35.2140, -80.9431),
+    "MIA": (25.7959, -80.2870),
+    "FLL": (26.0742, -80.1506),
+    "LAX": (33.9425, -118.4081),
+    "DFW": (32.8998, -97.0403),
+    "DTW": (42.2162, -83.3554),
+    "PBI": (26.6832, -80.0956),
+    "DEN": (39.8561, -104.6737),
+    "TPA": (27.9755, -82.5332),
+    "SFO": (37.6213, -122.3790),
+    "BNA": (36.1263, -86.6774),
+    "BWI": (39.1774, -76.6684),
+    "RDU": (35.8776, -78.7875),
+    "LAS": (36.0840, -115.1537),
+    "CMH": (39.9980, -82.8919),
+    "PIT": (40.4915, -80.2329),
+    "IAH": (29.9902, -95.3368),
+    "SJU": (18.4373, -66.0041),
+    "MDW": (41.7868, -87.7522),
+    "IND": (39.7173, -86.2944),
+    "RSW": (26.5362, -81.7552),
+    "MSP": (44.8848, -93.2223),
+    "PHX": (33.4373, -112.0078),
+    "SEA": (47.4502, -122.3088),
+    "CLE": (41.4117, -81.8498),
+    "STL": (38.7487, -90.3700),
+    "MSY": (29.9934, -90.2580),
+    "SAN": (32.7338, -117.1933),
+    "SLC": (40.7884, -111.9778),
+    "AUS": (30.1975, -97.6664),
+    "CHS": (32.8986, -80.0405),
+    "GSO": (36.0978, -79.9373),
+    "RIC": (37.5052, -77.3197),
+    "CVG": (39.0488, -84.6678),
+    "MCI": (39.2976, -94.7139),
+    "JAX": (30.4941, -81.6879),
+    "SAV": (32.1276, -81.2021),
+    "PWM": (43.6462, -70.3093),
+    "SRQ": (27.3954, -82.5544),
+    "DAL": (32.8471, -96.8518),
+    "EWR": (40.6925, -74.1687),
 }
 
 AIRPORT_DISPLAY = {
@@ -175,7 +223,7 @@ def is_holiday_window(d: date, window: int = 3) -> bool:
 
 # ── Weather fetch ────────────────────────────────────────────────────────────
 def fetch_weather(lat: float, lon: float, target_date: date, dep_hour: int):
-    if target_date <= date.today():
+    if target_date < date.today():
         url = "https://archive-api.open-meteo.com/v1/archive"
     else:
         url = "https://api.open-meteo.com/v1/forecast"
@@ -272,17 +320,22 @@ with col_flight:
     )
 
 with col_weather:
-    st.subheader("Weather at Departure")
+    st.subheader("Weather at Destination")
 
     if st.button("Auto-Fetch Weather from OpenMeteo", use_container_width=True):
-        lat, lon = AIRPORT_COORDS[origin_code]
-        with st.spinner("Fetching weather data…"):
-            wx = fetch_weather(lat, lon, flight_date, dep_time.hour)
-        if wx:
-            st.session_state["wx"] = wx
-            st.success("Weather loaded — values updated below.")
+        if not dest_code or len(dest_code) != 3:
+            st.warning("Select a destination airport first, then fetch weather.")
+        elif dest_code not in AIRPORT_COORDS:
+            st.warning(f"No coordinates on file for {dest_code}. Enter weather manually below.")
         else:
-            st.warning("Could not fetch weather. Enter values manually below.")
+            lat, lon = AIRPORT_COORDS[dest_code]
+            with st.spinner(f"Fetching weather for {dest_code}…"):
+                wx = fetch_weather(lat, lon, flight_date, dep_time.hour)
+            if wx:
+                st.session_state["wx"] = wx
+                st.success(f"Weather loaded for {dest_code} — values updated below.")
+            else:
+                st.warning("Could not fetch weather. Enter values manually below.")
 
     defaults = st.session_state.get("wx", {
         "temp": 15.0, "prcp": 0.0, "rain": 0.0, "snow": 0.0, "wspd": 12.0,
