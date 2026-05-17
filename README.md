@@ -186,6 +186,6 @@ Phase 3 Data Sources
 BTS On-Time Performance (same as Phase 1/2) — manual download
 Meteostat Hourly Weather (new) — fetched programmatically inside Notebook 05 via the meteostat Python library
 
-Only ny_flights_phase3_bronze.csv needs to be uploaded to Databricks. Weather is pulled live from Meteostat.
+Only ny_flights_phase3_bronze.csv needs to be uploaded to Databricks. Weather is pulled live from meteostat.
 
 
